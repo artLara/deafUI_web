@@ -1,0 +1,29 @@
+.wrapper {
+    align-items: center;
+    /* display: flex; */
+    justify-content: right;
+    align-items: right;
+    margin-left: auto; 
+    margin-right: 0;
+
+    width: 70px;
+    height: 100px;
+  }
+  
+  .traffic-light-container {
+    
+    background-color: #000;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .traffic-light {
+    --size: 50px;
+    background-color: #555;
+    border-radius: var(--size);
+    height: var(--size);
+    width: var(--size);
+  }
