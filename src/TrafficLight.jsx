@@ -1,19 +1,45 @@
 import { useEffect, useState } from "react";
+import { getColorLight } from "./api/traffic_ligth.api";
 
 export default function TrafficLight({ trafficStates }) {
   const [currentColor, setCurrentColor] = useState("green");
+  const [time, setTime] = useState(Date.now());
+
+
+  // useEffect(() => {
+  //   const { duration, next } = trafficStates[currentColor];
+
+  //   const timerId = setTimeout(() => {
+  //     setCurrentColor(next);
+  //   }, duration);
+
+  //   return () => {
+  //     clearTimeout(timerId);
+  //   };
+  // }, [currentColor]);
+
+
+ 
 
   useEffect(() => {
-    const { duration, next } = trafficStates[currentColor];
+    
 
-    const timerId = setTimeout(() => {
-      setCurrentColor(next);
-    }, duration);
+    // Update component every X seconds
+    const interval = setInterval(() => {
+      setTime(new Date());
 
-    return () => {
-      clearTimeout(timerId);
-    };
+      // Get request
+      async function loadColorLight(){
+        const res = await getColorLight();
+        setCurrentColor(res.data.color);
+        // console.log(res.data.color)
+      }
+      loadColorLight();
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, [currentColor]);
+
 
   return (
     <div className="traffic-light-container">
