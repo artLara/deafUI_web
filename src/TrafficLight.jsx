@@ -35,7 +35,7 @@ export default function TrafficLight({ trafficStates }) {
         // console.log(res.data.color)
       }
       loadColorLight();
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [currentColor]);
